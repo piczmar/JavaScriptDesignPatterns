@@ -1,0 +1,46 @@
+<html>
+<head>
+</head>
+
+<body>
+<script type="text/javascript">
+    // declare a class
+    function Person(name) {
+        this.name = name;
+    }
+    // declare Class method
+    Person.prototype.getName = function () {
+        return this.name;
+    }
+
+    // extend Person with new Class
+    /* Class Author. */
+    function Author(name, books) {
+        Person.call(this, name); // Call the superclass's constructor in the scope of this.
+        this.books = books; // Add an attribute to Author.
+    }
+    Author.prototype = new Person(); // Set up the prototype chain.
+    Author.prototype.constructor = Author; // Set the constructor attribute to Author.(when you set the prototype
+    // attribute to an instance of Person, the constructor attribute is wiped out).
+
+    Author.prototype.getBooks = function () { // Add a method to Author.
+        return this.books;
+    };
+
+
+    // create some instances:
+    var author = [];
+    author[0] = new Author('Dustin Diaz', ['JavaScript Design Patterns']);
+    author[1] = new Author('Ross Harmes', ['JavaScript Design Patterns']);
+    console.log('Author: name= %s, books= %s', author[1].getName(), author[1].getBooks()[0]);       // this will log to browser console e.g. in Chrome Shift+Ctrl+i will open dev console
+
+
+</script>
+
+
+<div id="content">
+
+</div>
+
+</body>
+</html>
